@@ -1,0 +1,28 @@
+{
+  "name": "interactive-web-final",
+  "version": "1.0.0",
+  "description": "Final project for Interacative Web Development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EShrestha/Interactive-Web-Final.git"
+  },
+  "author": "TEAM: I don't care just pick something",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EShrestha/Interactive-Web-Final/issues"
+  },
+  "homepage": "https://github.com/EShrestha/Interactive-Web-Final#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.10.18",
+    "pug": "^3.0.0"
+  }
+}
