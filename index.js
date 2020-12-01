@@ -44,6 +44,8 @@ app.get('/login', routes.login);
 app.post('/login', urlencodedParser, routes.verifyLogin);
 app.get('/create', routes.create);
 app.post('/create', urlencodedParser, routes.createUser);
+app.get('/edit', checkAuth, routes.editUser);
+app.post('/edit', checkAuth, routes.updateUser);
 
 app.get('/*', routes.lost);
 
