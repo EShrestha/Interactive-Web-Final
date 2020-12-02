@@ -63,7 +63,7 @@ exports.login = (req, res) => {
 }
 
 exports.verifyLogin = async (req, res) => {
-    
+
     let user = await User.findOne({ username: req.body.username });
     if (user == null) {
         res.redirect('/login');
@@ -78,7 +78,7 @@ exports.verifyLogin = async (req, res) => {
             }
             console.log(`User: "${req.body.username}" was authenticated.`);
             //Once logged in redirect to this page
-            res.redirect('/play');
+            res.redirect('/edit');
         } else {
             res.redirect('/login');
             console.log(`*Failed to log in, user "${req.body.username}" entered the wrong password.`);
@@ -93,7 +93,7 @@ exports.create = (req, res) => {
         title: 'Create Account',
         icon_href: '/images/create.png',
         css_href: '/create.css'
-    })
+    });
 }
 
 exports.createUser = async (req, res) => {
@@ -143,6 +143,17 @@ exports.createUser = async (req, res) => {
 
 }
 
+exports.editUser = (req, res) => {
+    res.render('edit', {
+        title: 'Edit Account',
+        icon_href: '/images/edit.png',
+        css_href: '/edit.css'
+    });
+}
+
+exports.updateUser = (req, res) => {
+    // Update db here
+}
 
 exports.edit = (req, res) => {
 
