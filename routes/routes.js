@@ -144,10 +144,25 @@ exports.createUser = async (req, res) => {
 }
 
 
+exports.edit = (req, res) => {
+
+    let user = req.session.user.username
+    // find user by username req.session.user.username
+
+    res.render('edit', {
+        title: 'Edit Account',
+        icon_href: '/images/create.png',
+        css_href: '/create.css',
+        _Username: req.body.username
+    })
+}
 
 
+exports.updateUser = (req, res) => {
+    // find user in DB req.body.username
 
-
+    //update info use req.body
+}
 
 
 

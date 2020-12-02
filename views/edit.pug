@@ -1,0 +1,72 @@
+extend layout
+
+block A
+    div(id='bodyDiv' class='body')
+        div(id='formTopTitle')
+            h(id='topTitle') Please Complete The Form Below
+        
+        div(id='contentDiv' class='contentHolder')
+
+            form(id='form' method='POST' action='/edit' autocomplete='off' onsubmit= 'return validate(event)')
+                div(class='inputDiv')
+                    h5(class='inputHeadding') Full Name
+                    input(id='fname' type='text' placeholder=_FName name='fname' autocomplete='off')
+                    p(id='fnameError' class='error') &nbsp;
+
+                div(class='inputDiv')
+                    h5(class='inputHeadding') Username
+                    input(id='username' type='text' value=_Username name='username' autocomplete='off')
+                    p(id='usernameError' class='error') &nbsp;
+
+                div(class='inputDiv')
+                    h5(class='inputHeadding') Age
+                    input(id='age' type='text' autocomplete='off' name='age' value=_Age )
+                    p(id='ageError' class='error') &nbsp;
+                
+                div(class='inputDiv')
+                    h5(class='inputHeadding') Email
+                    input(id='email' type='text' autocomplete='off' name='email' value=_Email )
+                    p(id='emailError' class='error') &nbsp;
+                    
+                div(class='inputDiv')
+                    h5(class='inputHeadding') Select favorite drink
+                    select(name="q1")
+                        option(value="Water") Water
+                        option(value="Melted Ice") Melted Ice
+                        option(value="Condensed Steam") Condensed Steam
+
+                    h5(class='inputHeadding') Dog or Cat?
+                    select(name="q2")
+                        option(value="Dog") Dog
+                        option(value="Cat") Cat
+                        option(value="Other") Other
+
+                    h5(class='inputHeadding') What Degree?
+                    select(name="q3")
+                        option(value="Computer Science") CS
+                        option(value="Software Engineering") SE
+                        option(value="Tech Management") TM
+                        option(value="Game") Game
+                        option(value="Web") Web
+                        option(value="Information Systems") IS
+
+
+                
+                div(class='inputDiv')
+                    h5(class='inputHeadding') Password
+                    input(id='password' name='password' type="password" value=_PassWd autocomplete="off")
+                    p(id='passwordError' class='error') &nbsp;
+
+                div(class='inputDiv')
+                    h5(class='inputHeadding') Verify Password
+                    input(id='vpassword' type="password" value=_PassWd autocomplete="off")
+                    p(id='vpasswordError' class='error') &nbsp;
+
+                //- Need to get  an answer from a list of three things from a multiple choice here
+
+                div
+                    p(id='submitError' class='error') &nbsp;
+                    input(id='submitBtn' type='submit' value='REGISTER')
+
+                a(id='loginLink' href='/login') Wait I Have An Account!
+
