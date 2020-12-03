@@ -78,7 +78,7 @@ exports.verifyLogin = async (req, res) => {
             }
             console.log(`User: "${req.body.username}" was authenticated.`);
             //Once logged in redirect to this page
-            res.redirect('/edit');
+            res.redirect('/lost')
         } else {
             res.redirect('/login');
             console.log(`*Failed to log in, user "${req.body.username}" entered the wrong password.`);
@@ -143,35 +143,70 @@ exports.createUser = async (req, res) => {
 
 }
 
-exports.editUser = (req, res) => {
-    res.render('edit', {
-        title: 'Edit Account',
-        icon_href: '/images/edit.png',
-        css_href: '/edit.css'
-    });
-}
+exports.edit = async (req, res) => {
 
-exports.updateUser = (req, res) => {
-    // Update db here
-}
-
-exports.edit = (req, res) => {
-
-    let user = req.session.user.username
-    // find user by username req.session.user.username
+    let username = req.session.user.username
+    
+    let user =  await User.findOne({username}, {_id:0, __v: 0}).catch(function (err, users) {
+        if (err) return handleError(err)
+    })
+    //find user by username req.session.user.username
+    // console.log("User" + user)
+    // console.log(user.username)
+    // console.log(user.password)
 
     res.render('edit', {
         title: 'Edit Account',
         icon_href: '/images/create.png',
         css_href: '/create.css',
-        _Username: req.body.username
-    })
+        _FName: user.fullName,
+        _Username: user.username,
+        _Age: user.age,
+        _Email: user.email,
+        _PassWD: user.password,
+        user
+        })
 }
 
 
-exports.updateUser = (req, res) => {
+exports.updateUser = async (req, res) => {
     // find user in DB req.body.username
+    console.log(req.body)
+    console.log(req.body.password)
+    console.log(req.body.vpassword)
+    let username = req.session.user.username
 
+    let user =  await User.findOne({username}).catch(function (err, users) {
+        if (err) return handleError(err)
+    })
+    console.log("User " + user)
+    user.fullName = req.body.fname
+    user.username = req.body.username
+    user.age = req.body.age
+    user.q1 = req.body.q1
+    user.q2 = req.body.q2
+    user.q3 = req.body.q3
+
+    if(req.body.password != "" & req.body.vpassword != "") {
+        if(req.body.vpassword != req.body.password) {
+            console.log("The passwords do not match")
+            res.redirect("/edit")
+        }else
+            var salty = bcrypt.genSaltSync(10);
+            var hashy = bcrypt.hashSync(req.body.password, salty);
+            user.password = hashy
+    }else if(req.body.password != "" & req.body.vpassword == ""){
+        console.log("The passwords do not match")
+        res.redirect("/edit")
+    }
+
+    console.log("User2 " + user)
+
+    user.save((err, user) => {
+        if (err) return console.error(err);
+        console.log(user.fullName + ' Changed');
+    });
+    res.redirect('/')
     //update info use req.body
 }
 

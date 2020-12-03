@@ -10,7 +10,7 @@ block A
             form(id='form' method='POST' action='/edit' autocomplete='off' onsubmit= 'return validate(event)')
                 div(class='inputDiv')
                     h5(class='inputHeadding') Full Name
-                    input(id='fname' type='text' placeholder=_FName name='fname' autocomplete='off')
+                    input(id='fname' type='text' value=user.fullName name='fname' autocomplete='off' placeholder=user.fullName)
                     p(id='fnameError' class='error') &nbsp;
 
                 div(class='inputDiv')
@@ -30,25 +30,19 @@ block A
                     
                 div(class='inputDiv')
                     h5(class='inputHeadding') Select favorite drink
-                    select(name="q1")
-                        option(value="Water") Water
-                        option(value="Melted Ice") Melted Ice
-                        option(value="Condensed Steam") Condensed Steam
+                    select(name="q1" select=_q1)
+                        each op in ["Water", "Melted Ice", "Condensed Steam"]
+                                option(value=op selected=(op === user.q1)) #{op}
 
                     h5(class='inputHeadding') Dog or Cat?
-                    select(name="q2")
-                        option(value="Dog") Dog
-                        option(value="Cat") Cat
-                        option(value="Other") Other
+                    select(name="q2" select=_q2)
+                        each op in ["Dog", "Cat", "Other"]
+                            option(value=op selected=(op === user.q2)) #{op}
 
                     h5(class='inputHeadding') What Degree?
-                    select(name="q3")
-                        option(value="Computer Science") CS
-                        option(value="Software Engineering") SE
-                        option(value="Tech Management") TM
-                        option(value="Game") Game
-                        option(value="Web") Web
-                        option(value="Information Systems") IS
+                    select(name="q3" select=_q3)
+                        each op in ["Computer Science", "Software Engineering", "Tech Management", "Game", "Web", "Information Systems"]
+                                option(value=op selected=(op === user.q3)) #{op}
 
 
                 
@@ -59,14 +53,12 @@ block A
 
                 div(class='inputDiv')
                     h5(class='inputHeadding') Verify Password
-                    input(id='vpassword' type="password" value=_PassWd autocomplete="off")
+                    input(id='vpassword' name='vpassword' type="password" value=_PassWd2 autocomplete="off")
                     p(id='vpasswordError' class='error') &nbsp;
 
                 //- Need to get  an answer from a list of three things from a multiple choice here
 
                 div
                     p(id='submitError' class='error') &nbsp;
-                    input(id='submitBtn' type='submit' value='REGISTER')
-
-                a(id='loginLink' href='/login') Wait I Have An Account!
+                    input(id='submitBtn' type='submit' value='Edit')
 
