@@ -46,6 +46,7 @@ app.get('/create', routes.create);
 app.post('/create', urlencodedParser, routes.createUser);
 app.get('/edit', checkAuth, routes.edit)
 app.post('/edit', checkAuth, urlencodedParser, routes.updateUser);
+app.get('/api', routes.sendApi);
 
 app.get('/*', routes.lost);
 

@@ -211,7 +211,13 @@ exports.updateUser = async (req, res) => {
 }
 
 
-
+exports.sendApi(req, res) {
+    {
+        "q1": 34,
+        "q2": 2,
+        "q3": 6     
+    }
+}
 
 
 
