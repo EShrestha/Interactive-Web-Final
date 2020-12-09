@@ -78,7 +78,7 @@ exports.verifyLogin = async (req, res) => {
             }
             console.log(`User: "${req.body.username}" was authenticated.`);
             //Once logged in redirect to this page
-            res.redirect('/lost')
+            res.redirect('/')
         } else {
             res.redirect('/login');
             console.log(`*Failed to log in, user "${req.body.username}" entered the wrong password.`);
@@ -165,7 +165,7 @@ exports.edit = async (req, res) => {
         _Email: user.email,
         _PassWD: user.password,
         user
-        })
+    })
 }
 
 
@@ -211,12 +211,55 @@ exports.updateUser = async (req, res) => {
 }
 
 
-exports.sendApi(req, res) {
-    {
-        "q1": 34,
-        "q2": 2,
-        "q3": 6     
+exports.api = async  (req, res) =>{
+    console.log("Api requested");
+    let q1a = 0;
+    await User.countDocuments({ q1: "Water" }, (err, result) => { if (err) { console.log(err); } else { q1a = result; } });
+    let q1b = 0;
+    await User.countDocuments({ q1: "Melted Ice" }, (err, result) => { if (err) { console.log(err); } else { q1b = result; } });
+    let q1c = 0;
+    await User.countDocuments({ q1: "Condensed Steam" }, (err, result) => { if (err) { console.log(err); } else { q1c = result; } });
+
+    
+
+    let q2a = 0;
+    await User.countDocuments({ q2: "Dog" }, (err, result) => { if (err) { console.log(err); } else { q2a = result; } });
+    let q2b = 0;
+    await User.countDocuments({ q2: "Cat" }, (err, result) => { if (err) { console.log(err); } else { q2b = result; } });
+    let q2c = 0;
+    await User.countDocuments({ q2: "Other" }, (err, result) => { if (err) { console.log(err); } else { q2c = result; } });
+
+    let q3a = 0;
+    await User.countDocuments({ q3: "Computer Science" }, (err, result) => { if (err) { console.log(err); } else { q3a = result; } });
+    let q3b = 0;
+    await User.countDocuments({ q3: "Software Engineering" }, (err, result) => { if (err) { console.log(err); } else { q3b = result; } });
+    let q3c = 0;
+    await User.countDocuments({ q3: "Tech Management" }, (err, result) => { if (err) { console.log(err); } else { q3c = result; } });
+    let q3d = 0;
+    await User.countDocuments({ q3: "Game" }, (err, result) => { if (err) { console.log(err); } else { q3d = result; } });
+    let q3e = 0;
+    await User.countDocuments({ q3: "Web" }, (err, result) => { if (err) { console.log(err); } else { q3e = result; } });
+    let q3f = 0;
+    await User.countDocuments({ q3: "Information Systems" }, (err, result) => { if (err) { console.log(err); } else { q3f = result; } });
+
+    let json = {
+        q1a,
+        q1b,
+        q1c,
+
+        q2a,
+        q2b,
+        q2c,
+
+        q3a,
+        q3b,
+        q3c,
+        q3d,
+        q3e,
+        q3f
+
     }
+    res.json(json);
 }
 
 

@@ -8,6 +8,11 @@ const cookieParser = require('cookie-parser');
 
 
 const app = express();
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+})
 
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
@@ -46,7 +51,16 @@ app.get('/create', routes.create);
 app.post('/create', urlencodedParser, routes.createUser);
 app.get('/edit', checkAuth, routes.edit)
 app.post('/edit', checkAuth, urlencodedParser, routes.updateUser);
-app.get('/api', routes.sendApi);
+app.get('/api', routes.api);
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect('/');
+        }
+    })
+});
 
 app.get('/*', routes.lost);
 
