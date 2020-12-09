@@ -35,5 +35,5 @@ context.lineTo(300, 60);
 
 
 context.font = "30px Arial";
-context.fillText("bar Graph", 50, 150);
+context.fillText("bar Graph", 70, 170);
 }
