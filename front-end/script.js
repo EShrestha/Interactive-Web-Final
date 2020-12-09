@@ -101,6 +101,7 @@ window.onload = () => {
             q1c = data.q1c;
             q1Total = q1a + q1b + q1c;
 
+<<<<<<< HEAD
             q2a = data.q2a;
             q2b = data.q2b;
             q2c = data.q2c;
@@ -122,4 +123,25 @@ window.onload = () => {
 
 
   
+=======
+canvas.width = 600;
+canvas.height = 400;
+
+context.fillStyle = "#2a6"
+context.fillRect(300, 80, 80, 40);
+
+context.strokeStyle = "#fff";
+context.strokeRect(150, 80, 80, 40);
+
+context.strokeStyle = "#f00";
+context.beginPath();
+context.moveTo(450, 10);
+context.lineTo(420, 35);
+context.lineTo(300, 60);
+context.fill();
+
+context.fillStyle = "#ff0";
+context.font = "30px Arial";
+context.fillText("Bar Graph", 50, 150);
+>>>>>>> f2afb3c639a2c75834ff40fb13246f03c119bad6
 }
