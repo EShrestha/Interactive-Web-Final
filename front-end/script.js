@@ -17,13 +17,13 @@ window.onload = () => {
     const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 
-canvas.width = 900;
+canvas.width = 600;
 canvas.height = 400;
 
-context.fillStyle = "#2f6"
+context.fillStyle = "#2a6"
 context.fillRect(300, 80, 80, 40);
 
-context.strokeStyle = "#ff";
+context.strokeStyle = "#fff";
 context.strokeRect(150, 80, 80, 40);
 
 context.strokeStyle = "#f00";
@@ -31,9 +31,9 @@ context.beginPath();
 context.moveTo(450, 10);
 context.lineTo(420, 35);
 context.lineTo(300, 60);
+context.fill();
 
-
-
+context.fillStyle = "#ff0";
 context.font = "30px Arial";
-context.fillText("bar Graph", 70, 170);
+context.fillText("Bar Graph", 50, 150);
 }
